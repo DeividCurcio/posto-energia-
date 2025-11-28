@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Posto Energia+</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>Dashboard Administrativo</h1>
+    <button id="btnSair" class="logout">Sair</button>
+</header>
+
+<div class="container">
+    <section class="card">
+        <h2>Total de Usuários</h2>
+        <p id="totalUsuarios" class="numero"></p>
+    </section>
+
+    <section class="card">
+        <h2>Economia Total dos Clientes</h2>
+        <p class="numero">R$ <span id="economiaTotal"></span></p>
+    </section>
+
+    <section class="card">
+        <h2>Assinantes Ativos</h2>
+        <p id="totalAssinantes" class="numero"></p>
+    </section>
+</div>
+
+<div class="graficos">
+    <div class="grafico-box">
+        <h3>Distribuição dos Planos</h3>
+        <canvas id="graficoPlanos"></canvas>
+    </div>
+
+    <div class="grafico-box">
+        <h3>Economia por Plano</h3>
+        <canvas id="graficoEconomia"></canvas>
+    </div>
+
+    <div class="grafico-box">
+        <h3>Histórico de Logins</h3>
+        <canvas id="graficoLogins"></canvas>
+    </div>
+</div>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>

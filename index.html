@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posto Energia+ | Completo</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+
+<header>
+    <h1>Posto Energia+</h1>
+
+    <nav>
+        <a href="#servicos">Serviços</a>
+        <a href="#precos">Preços</a>
+        <a href="#clube">Clube</a>
+        <a href="#painel" id="menuPainel" class="hide">Painel</a>
+
+        <button id="toggleTheme" class="btn-modal">🌙</button>
+
+        <button id="btnLogin" class="btn-modal">Entrar</button>
+        <button id="btnLogout" class="btn-modal hide">Sair</button>
+    </nav>
+</header>
+
+<section class="hero">
+    <video class="hero-video" src="hero.mp4" autoplay muted loop playsinline poster="" ></video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h2>Economia, qualidade e atendimento premium.</h2>
+        <p>Faça parte do nosso clube e ganhe até <strong>20% OFF</strong> no combustível.</p>
+        <button id="btnAssinar" class="btn-primary">Quero fazer parte</button>
+    </div>
+</section>
+
+<section id="servicos" class="container">
+    <h2>Serviços</h2>
+    <div class="cards">
+        <div class="card serv" data-serv="troca">Troca de Óleo</div>
+        <div class="card serv" data-serv="lavagem">Lavagem Premium</div>
+        <div class="card serv" data-serv="conveniencia">Loja de Conveniência</div>
+        <div class="card serv" data-serv="abastecimento">Abastecimento Rápido</div>
+    </div>
+</section>
+
+<section id="precos" class="container">
+    <h2>Preços Atualizados</h2>
+    <table>
+        <tr><th>Combustível</th><th>Preço Atual</th></tr>
+        <tr><td>Gasolina</td><td id="precoGasolina"></td></tr>
+        <tr><td>Etanol</td><td id="precoEtanol"></td></tr>
+        <tr><td>Diesel</td><td id="precoDiesel"></td></tr>
+    </table>
+
+    <button id="editPrecos" class="btn-primary hide">Editar Preços</button>
+</section>
+
+<section id="clube" class="container">
+    <h2>Clube Energia+</h2>
+    <p>Escolha seu plano e comece a economizar agora.</p>
+
+    <div class="planos">
+        <div class="plano bronze">
+            <h3>Bronze</h3>
+            <p>10% de desconto</p>
+            <p>R$ 9,90/mês</p>
+            <button class="btnAssinarPlano" data-plano="bronze">Assinar</button>
+        </div>
+        <div class="plano ouro">
+            <h3>Prata</h3>
+            <p>15% de desconto</p>
+            <p>R$ 14,90/mês</p>
+            <button class="btnAssinarPlano" data-plano="prata">Assinar</button>
+        </div>
+        <div class="plano elite">
+            <h3>Ouro</h3>
+            <p>20% de desconto</p>
+            <p>R$ 19,90/mês</p>
+            <button class="btnAssinarPlano" data-plano="ouro">Assinar</button>
+        </div>
+    </div>
+</section>
+
+<!-- PAINEL DO USUÁRIO -->
+<section id="painel" class="container hide">
+    <h2>Painel do Usuário</h2>
+    <p><strong>Nome:</strong> <span id="painelNome"></span></p>
+    <p><strong>Plano:</strong> <span id="painelPlano"></span></p>
+    <p><strong>Economia acumulada:</strong> R$ <span id="economiaTotal">0,00</span></p>
+</section>
+
+<!-- MODAL LOGIN -->
+<div id="modalLogin" class="modal">
+    <div class="modal-content">
+        <span class="close" data-close="modalLogin">&times;</span>
+        <h2>Entrar</h2>
+        <input id="loginEmail" type="email" placeholder="Email">
+        <input id="loginSenha" type="password" placeholder="Senha">
+        <button id="realizarLogin" class="btn-primary">Entrar</button>
+        <p>Não tem conta? <span id="abrirCadastro" class="link">Criar agora</span></p>
+    </div>
+</div>
+
+<!-- MODAL CADASTRO -->
+<div id="modalCadastro" class="modal">
+    <div class="modal-content">
+        <span class="close" data-close="modalCadastro">&times;</span>
+        <h2>Criar Conta</h2>
+        <input id="cadNome" type="text" placeholder="Nome completo">
+        <input id="cadEmail" type="email" placeholder="Email">
+        <input id="cadSenha" type="password" placeholder="Senha">
+        <button id="realizarCadastro" class="btn-primary">Cadastrar</button>
+    </div>
+</div>
+
+<!-- MODAL EDIÇÃO DE PREÇOS -->
+<div id="modalPrecos" class="modal">
+    <div class="modal-content">
+        <span class="close" data-close="modalPrecos">&times;</span>
+        <h2>Editar Preços</h2>
+
+        <input id="editGasolina" type="number" step="0.01" placeholder="Gasolina">
+        <input id="editEtanol" type="number" step="0.01" placeholder="Etanol">
+        <input id="editDiesel" type="number" step="0.01" placeholder="Diesel">
+
+        <button id="salvarPrecos" class="btn-primary">Salvar</button>
+    </div>
+</div>
+
+<!-- MODAL PAGAMENTO -->
+<div id="modalPagamento" class="modal">
+    <div class="modal-content">
+        <span class="close" data-close="modalPagamento">&times;</span>
+        <h2>Pagamento</h2>
+
+        <p id="planoSelecionado"></p>
+
+        <button id="pagarPIX" class="btn-primary">Pagar via PIX</button>
+        <button id="pagarCartao" class="btn-primary">Cartão de Crédito</button>
+
+        <div id="cartaoArea" class="hide">
+            <input placeholder="Número do cartão">
+            <input placeholder="Validade">
+            <input placeholder="CVV">
+            <button id="confirmarCartao" class="btn-primary">Confirmar</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<link rel="stylesheet" href="css/chatbot.css">
+</body>
+</html>
