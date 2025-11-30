@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Posto Energia+ | Completo</title>
     <link rel="stylesheet" href="style.css">
-    </head>
+    <link rel="stylesheet" href="css/chatbot.css">
+</head>
 <body>
 
 <header>
     <h1>Posto Energia+</h1>
 
     <nav>
-        <a href="#servicos">Serviços</a>
-        <a href="#precos">Preços</a>
+        <a href="#servicos">Servi&ccedil;os</a>
+        <a href="#precos">Pre&ccedil;os</a>
         <a href="#clube">Clube</a>
         <a href="#painel" id="menuPainel" class="hide">Painel</a>
 
-        <button id="toggleTheme" class="btn-modal">🌙</button>
+        <button id="toggleTheme" class="btn-modal" aria-label="Alternar tema">&#9728;</button>
 
         <button id="btnLogin" class="btn-modal">Entrar</button>
         <button id="btnLogout" class="btn-modal hide">Sair</button>
@@ -25,35 +26,35 @@
 </header>
 
 <section class="hero">
-    <video class="hero-video" src="hero.mp4" autoplay muted loop playsinline poster="" ></video>
+    <video class="hero-video" src="hero.mp4" autoplay muted loop poster="poster.jpg"></video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
         <h2>Economia, qualidade e atendimento premium.</h2>
-        <p>Faça parte do nosso clube e ganhe até <strong>20% OFF</strong> no combustível.</p>
+        <p>Fa&ccedil;a parte do nosso clube e ganhe at&eacute; <strong>20% OFF</strong> no combust&iacute;vel.</p>
         <button id="btnAssinar" class="btn-primary">Quero fazer parte</button>
     </div>
 </section>
 
 <section id="servicos" class="container">
-    <h2>Serviços</h2>
+    <h2>Servi&ccedil;os</h2>
     <div class="cards">
-        <div class="card serv" data-serv="troca">Troca de Óleo</div>
+        <div class="card serv" data-serv="troca">Troca de &Oacute;leo</div>
         <div class="card serv" data-serv="lavagem">Lavagem Premium</div>
-        <div class="card serv" data-serv="conveniencia">Loja de Conveniência</div>
-        <div class="card serv" data-serv="abastecimento">Abastecimento Rápido</div>
+        <div class="card serv" data-serv="conveniencia">Loja de Conveni&ecirc;ncia</div>
+        <div class="card serv" data-serv="abastecimento">Abastecimento R&aacute;pido</div>
     </div>
 </section>
 
 <section id="precos" class="container">
-    <h2>Preços Atualizados</h2>
+    <h2>Pre&ccedil;os Atualizados</h2>
     <table>
-        <tr><th>Combustível</th><th>Preço Atual</th></tr>
+        <tr><th>Combust&iacute;vel</th><th>Pre&ccedil;o Atual</th></tr>
         <tr><td>Gasolina</td><td id="precoGasolina"></td></tr>
         <tr><td>Etanol</td><td id="precoEtanol"></td></tr>
         <tr><td>Diesel</td><td id="precoDiesel"></td></tr>
     </table>
 
-    <button id="editPrecos" class="btn-primary hide">Editar Preços</button>
+    <button id="editPrecos" class="btn-primary hide">Editar Pre&ccedil;os</button>
 </section>
 
 <section id="clube" class="container">
@@ -64,27 +65,27 @@
         <div class="plano bronze">
             <h3>Bronze</h3>
             <p>10% de desconto</p>
-            <p>R$ 9,90/mês</p>
+            <p>R$ 9,90/m&ecirc;s</p>
             <button class="btnAssinarPlano" data-plano="bronze">Assinar</button>
         </div>
         <div class="plano ouro">
             <h3>Prata</h3>
             <p>15% de desconto</p>
-            <p>R$ 14,90/mês</p>
+            <p>R$ 14,90/m&ecirc;s</p>
             <button class="btnAssinarPlano" data-plano="prata">Assinar</button>
         </div>
         <div class="plano elite">
             <h3>Ouro</h3>
             <p>20% de desconto</p>
-            <p>R$ 19,90/mês</p>
+            <p>R$ 19,90/m&ecirc;s</p>
             <button class="btnAssinarPlano" data-plano="ouro">Assinar</button>
         </div>
     </div>
 </section>
 
-<!-- PAINEL DO USUÁRIO -->
+<!-- PAINEL DO USU&Aacute;RIO -->
 <section id="painel" class="container hide">
-    <h2>Painel do Usuário</h2>
+    <h2>Painel do Usu&aacute;rio</h2>
     <p><strong>Nome:</strong> <span id="painelNome"></span></p>
     <p><strong>Plano:</strong> <span id="painelPlano"></span></p>
     <p><strong>Economia acumulada:</strong> R$ <span id="economiaTotal">0,00</span></p>
@@ -98,7 +99,7 @@
         <input id="loginEmail" type="email" placeholder="Email">
         <input id="loginSenha" type="password" placeholder="Senha">
         <button id="realizarLogin" class="btn-primary">Entrar</button>
-        <p>Não tem conta? <span id="abrirCadastro" class="link">Criar agora</span></p>
+        <p>N&atilde;o tem conta? <span id="abrirCadastro" class="link">Criar agora</span></p>
     </div>
 </div>
 
@@ -114,11 +115,11 @@
     </div>
 </div>
 
-<!-- MODAL EDIÇÃO DE PREÇOS -->
+<!-- MODAL EDI&Ccedil;&Atilde;O DE PRE&Ccedil;OS -->
 <div id="modalPrecos" class="modal">
     <div class="modal-content">
         <span class="close" data-close="modalPrecos">&times;</span>
-        <h2>Editar Preços</h2>
+        <h2>Editar Pre&ccedil;os</h2>
 
         <input id="editGasolina" type="number" step="0.01" placeholder="Gasolina">
         <input id="editEtanol" type="number" step="0.01" placeholder="Etanol">
@@ -137,18 +138,18 @@
         <p id="planoSelecionado"></p>
 
         <button id="pagarPIX" class="btn-primary">Pagar via PIX</button>
-        <button id="pagarCartao" class="btn-primary">Cartão de Crédito</button>
+        <button id="pagarCartao" class="btn-primary">Cart&atilde;o de Cr&eacute;dito</button>
 
         <div id="cartaoArea" class="hide">
-            <input placeholder="Número do cartão">
-            <input placeholder="Validade">
+            <input placeholder="N&uacute;mero do cart&atilde;o">
+            <input placeholder="Validade (MM/AA)">
             <input placeholder="CVV">
             <button id="confirmarCartao" class="btn-primary">Confirmar</button>
         </div>
     </div>
 </div>
 
+<script src="js/chatbot.js"></script>
 <script src="script.js"></script>
-<link rel="stylesheet" href="css/chatbot.css">
 </body>
 </html>

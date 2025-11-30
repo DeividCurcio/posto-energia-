@@ -15,32 +15,30 @@ document.querySelectorAll(".close").forEach(btn => {
 /* ============================
     DARK MODE
 ============================ */
-let body = document.body;
-let toggleTheme = document.getElementById("toggleTheme");
+const body = document.body;
+const toggleTheme = document.getElementById("toggleTheme");
+const ICON_SUN = "\u2600";      // ☀
+const ICON_MOON = "\u{1F319}";  // 🌙
 
 if (localStorage.getItem("tema") === "dark") {
     body.classList.add("dark");
-    toggleTheme.textContent = "☀";
 }
+toggleTheme.textContent = body.classList.contains("dark") ? ICON_MOON : ICON_SUN;
 
 toggleTheme.addEventListener("click", () => {
     body.classList.toggle("dark");
+    const isDark = body.classList.contains("dark");
 
-    if (body.classList.contains("dark")) {
-        localStorage.setItem("tema", "dark");
-        toggleTheme.textContent = "☀";
-    } else {
-        localStorage.setItem("tema", "light");
-        toggleTheme.textContent = "🌙";
-    }
+    localStorage.setItem("tema", isDark ? "dark" : "light");
+    toggleTheme.textContent = isDark ? ICON_MOON : ICON_SUN;
 });
 
 /* ============================
     LOGIN / CADASTRO
 ============================ */
-let btnLogin = document.getElementById("btnLogin");
-let btnLogout = document.getElementById("btnLogout");
-let menuPainel = document.getElementById("menuPainel");
+const btnLogin = document.getElementById("btnLogin");
+const btnLogout = document.getElementById("btnLogout");
+const menuPainel = document.getElementById("menuPainel");
 
 let usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado")) || null;
 
@@ -53,21 +51,21 @@ document.getElementById("abrirCadastro").addEventListener("click", () => {
 
 /* Cadastro */
 document.getElementById("realizarCadastro").addEventListener("click", () => {
-    let nome = document.getElementById("cadNome").value;
-    let email = document.getElementById("cadEmail").value;
-    let senha = document.getElementById("cadSenha").value;
+    const nome = document.getElementById("cadNome").value.trim();
+    const email = document.getElementById("cadEmail").value.trim();
+    const senha = document.getElementById("cadSenha").value;
 
     if (!nome || !email || !senha) {
-        alert("Preencha todos os campos!");
+        alert("Preencha todos os campos.");
         return;
     }
 
     if (localStorage.getItem(email)) {
-        alert("Este email já está cadastrado!");
+        alert("Este email ja esta cadastrado.");
         return;
     }
 
-    let novoUsuario = {
+    const novoUsuario = {
         nome,
         email,
         senha,
@@ -83,13 +81,13 @@ document.getElementById("realizarCadastro").addEventListener("click", () => {
 
 /* Login */
 document.getElementById("realizarLogin").addEventListener("click", () => {
-    let email = document.getElementById("loginEmail").value;
-    let senha = document.getElementById("loginSenha").value;
+    const email = document.getElementById("loginEmail").value.trim();
+    const senha = document.getElementById("loginSenha").value;
 
-    let usuario = JSON.parse(localStorage.getItem(email));
+    const usuario = JSON.parse(localStorage.getItem(email) || "null");
 
     if (!usuario || usuario.senha !== senha) {
-        alert("Email ou senha incorretos!");
+        alert("Email ou senha incorretos.");
         return;
     }
 
@@ -119,9 +117,9 @@ function atualizarInterfaceUsuario() {
         document.getElementById("painelNome").textContent = usuarioLogado.nome;
         document.getElementById("painelPlano").textContent = usuarioLogado.plano;
         document.getElementById("economiaTotal").textContent =
-            usuarioLogado.economia.toFixed(2);
+            Number(usuarioLogado.economia || 0).toFixed(2);
 
-        // admin pode editar preços
+        // admin pode editar precos
         if (usuarioLogado.email === "admin@posto.com") {
             document.getElementById("editPrecos").classList.remove("hide");
         }
@@ -134,8 +132,22 @@ function atualizarInterfaceUsuario() {
 }
 atualizarInterfaceUsuario();
 
+/* CTA do hero leva ao clube e abre cadastro se nao logado */
+const btnAssinarHero = document.getElementById("btnAssinar");
+if (btnAssinarHero) {
+    btnAssinarHero.addEventListener("click", () => {
+        const secClube = document.getElementById("clube");
+        if (secClube) {
+            secClube.scrollIntoView({ behavior: "smooth" });
+        }
+        if (!usuarioLogado) {
+            abrir("modalCadastro");
+        }
+    });
+}
+
 /* ============================
-    PREÇOS AUTOMÁTICOS
+    PRECOS AUTOMATICOS
 ============================ */
 let precos = JSON.parse(localStorage.getItem("precos")) || {
     gasolina: 5.89,
@@ -150,7 +162,7 @@ function atualizarTabela() {
 }
 atualizarTabela();
 
-/* Editar preços */
+/* Editar precos */
 document.getElementById("editPrecos").addEventListener("click", () => {
     abrir("modalPrecos");
 
@@ -173,19 +185,17 @@ document.getElementById("salvarPrecos").addEventListener("click", () => {
     ASSINATURAS
 ============================ */
 let planoSelecionado = null;
+const descricoesPlanos = {
+    bronze: "Plano Bronze - R$ 9,90/mes (10% de desconto)",
+    prata:  "Plano Prata - R$ 14,90/mes (15% de desconto)",
+    ouro:   "Plano Ouro - R$ 19,90/mes (20% de desconto)"
+};
+const valoresPlanos = { bronze: 9.90, prata: 14.90, ouro: 19.90 };
 
 document.querySelectorAll(".btnAssinarPlano").forEach(btn => {
     btn.addEventListener("click", () => {
         planoSelecionado = btn.dataset.plano;
-
-        let texto = {
-            bronze: "Plano Bronze — R$ 9,90/mês (10% de desconto)",
-            prata:  "Plano Prata — R$ 14,90/mês (15% de desconto)",
-            ouro:   "Plano Ouro — R$ 19,90/mês (20% de desconto)"
-        };
-
-        document.getElementById("planoSelecionado").textContent = texto[planoSelecionado];
-
+        document.getElementById("planoSelecionado").textContent = descricoesPlanos[planoSelecionado] || "";
         abrir("modalPagamento");
     });
 });
@@ -197,28 +207,23 @@ document.getElementById("pagarCartao").addEventListener("click", () => {
 });
 
 document.getElementById("confirmarCartao").addEventListener("click", () => {
-    const valoresPlanos = {
-        bronze: 9.90,
-        prata: 14.90,
-        ouro: 19.90
-    };
     const valorDoPlanoSelecionado = valoresPlanos[planoSelecionado] || 0;
-    let valorFinal = typeof aplicarCupom === 'function' ? aplicarCupom(valorDoPlanoSelecionado) : valorDoPlanoSelecionado;
-    confirmarPagamento("Cartão", valorFinal);
+    const valorFinal = typeof aplicarCupom === "function"
+        ? aplicarCupom(valorDoPlanoSelecionado)
+        : valorDoPlanoSelecionado;
+    confirmarPagamento("Cartao", valorFinal);
 });
 
 /* Finaliza assinatura */
 function confirmarPagamento(tipo, valorFinal) {
     if (!usuarioLogado) {
-        alert("Faça login!");
+        alert("Faca login!");
         return;
     }
 
-    // salva plano & economia
     usuarioLogado.plano = planoSelecionado;
 
-    // registra economia da assinatura (simulação)
-    const valoresPlanos = { bronze: 9.90, prata: 14.90, ouro: 19.90 };
+    // registra economia da assinatura (simulacao)
     const valorDoPlanoSelecionado = valoresPlanos[planoSelecionado] || 0;
     const economia = Math.max(0, (valorDoPlanoSelecionado - (Number(valorFinal) || 0)));
     usuarioLogado.economia = Number(usuarioLogado.economia || 0) + economia;
@@ -233,11 +238,15 @@ function confirmarPagamento(tipo, valorFinal) {
 }
 
 /* ============================
-    SERVIÇOS (redirecionamento)
+    SERVICOS (redirecionamento)
 ============================ */
 document.querySelectorAll(".serv").forEach(card => {
     card.addEventListener("click", () => {
-        let serv = card.dataset.serv;
-        window.location.href = `servico_${serv}.html`;
+        const serv = card.dataset.serv;
+        if (serv === "troca") {
+            window.location.href = `pages/informacoes.html?video=troca.mp4`;
+        } else {
+            window.location.href = `servico_${serv}.html`;
+        }
     });
 });
