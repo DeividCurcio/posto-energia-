@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cupons | Painel Administrativo</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<header>
+    <h1>Gerenciar Cupons</h1>
+    <button id="btnSair" class="logout">Sair</button>
+</header>
+
+<div class="container">
+
+    <section class="sec-full">
+        <h2>Criar Cupom</h2>
+
+        <input id="cupomCodigo" placeholder="Código do cupom">
+        <input id="cupomDesconto" type="number" placeholder="Desconto (%)">
+        <button id="criarCupom">Criar</button>
+
+        <h2 class="mt-30">Cupons Ativos</h2>
+
+        <table id="tabelaCupons">
+            <tr>
+                <th>Código</th>
+                <th>Desconto</th>
+                <th>Usado</th>
+                <th>Ações</th>
+            </tr>
+        </table>
+    </section>
+
+</div>
+
+<script src="../js/cupons_admin.js"></script>
+</body>
+</html>

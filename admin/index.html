@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo | Posto Energia+</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<header>
+    <h1>Painel Administrativo <span class="badge-admin">ADMIN</span></h1>
+    <div class="header-actions">
+        <button id="toggleAdminTheme" class="btn-theme">🌙</button>
+        <button id="btnSair" class="logout">Sair</button>
+    </div>
+</header>
+
+<div class="container">
+
+    <nav class="sidebar">
+        <h3>Menu</h3>
+        <ul>
+            <li data-page="usuarios">👥 Usuários</li>
+            <li data-page="precos">⛽ Preços</li>
+            <li data-page="planos">⭐ Planos</li>
+            <li data-page="cupons">🏷 Cupons</li>
+            <li data-page="dashboard">📊 Dashboard</li>
+        </ul>
+    </nav>
+
+    <main id="conteudo">
+
+        <section id="usuarios" class="page">
+            <h2>Usuários Cadastrados</h2>
+            <table id="tabelaUsuarios">
+                <tr><th>Nome</th><th>Email</th><th>Plano</th><th>Economia</th></tr>
+            </table>
+        </section>
+
+        <section id="precos" class="page hide">
+            <h2>Preços do Combustível</h2>
+            <input id="editGasolina" type="number" step="0.01" placeholder="Gasolina">
+            <input id="editEtanol" type="number" step="0.01" placeholder="Etanol">
+            <input id="editDiesel" type="number" step="0.01" placeholder="Diesel">
+            <button id="salvarPrecos">Salvar Preços</button>
+        </section>
+
+        <section id="planos" class="page hide">
+            <h2>Planos do Clube</h2>
+            <p>Planos são fixos e não podem ser alterados aqui.</p>
+            <ul>
+                <li>Bronze — 10% — R$ 9,90</li>
+                <li>Prata — 15% — R$ 14,90</li>
+                <li>Ouro — 20% — R$ 19,90</li>
+            </ul>
+        </section>
+
+        <section id="cupons" class="page hide">
+            <h2>Gerenciar Cupons</h2>
+            <input id="cupomCodigo" placeholder="Código">
+            <input id="cupomDesconto" type="number" step="1" placeholder="% Desconto">
+            <button id="criarCupom">Criar Cupom</button>
+
+            <h3>Cupons Criados</h3>
+            <ul id="listaCupons"></ul>
+        </section>
+
+        <section id="dashboard" class="page hide">
+            <h2>Dashboard</h2>
+            <p><a href="../dashboard.html" class="btn">Abrir Dashboard Completo</a></p>
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../js/admin.js"></script>
+</body>
+</html>

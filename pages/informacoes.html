@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações | Posto Energia+</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <h1>Informações e Vídeos</h1>
+        <a href="../index.html" class="btn-voltar">⬅ Voltar</a>
+    </header>
+        <section class="container">
+            <h2>Vídeos Informativos</h2>
+            <div class="videos" id="videosArea"></div>
+        <div class="cards">
+            <div class="card serv" data-serv="troca">Troca de Óleo</div>
+            <div class="card serv" data-serv="lavagem">Lavagem Premium</div>
+            <div class="card serv" data-serv="conveniencia">Loja de Conveniência</div>
+            <div class="card serv" data-serv="abastecimento">Abastecimento Rápido</div>
+        </div>
+        <div class="info">
+            <h3>Sobre o Posto Energia+</h3>
+            <p>Aqui você encontra informações detalhadas sobre nossos serviços, promoções e funcionamento.</p>
+        </div>
+    </section>
+</body>
+<script src="../js/servicos_paginas.js"></script>
+<script>
+// Exibe vídeo conforme parâmetro da URL
+function getVideoFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('video') || 'hero.mp4';
+}
+const videoSrc = getVideoFromUrl();
+document.getElementById('videosArea').innerHTML = `
+    <video controls poster="poster.jpg" width="100%">
+        <source src="../${videoSrc}" type="video/mp4">
+        Seu navegador não suporta vídeo.
+    </video>
+`;
+</script>
+</html>
