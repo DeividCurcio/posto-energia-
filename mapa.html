@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localização | Posto Energia+</title>
+
+    <link rel="stylesheet" href="../css/mapa.css">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+</head>
+<body>
+
+<header>
+    <h1>Localização do Posto</h1>
+    <a href="../index.html" class="btn-voltar">⬅ Voltar</a>
+</header>
+
+<section class="container">
+
+    <div id="map"></div>
+
+    <div class="info">
+        <h3>Traçar rota até o posto</h3>
+        <button id="btnLocalizar" class="btn-primary">Usar minha localização</button>
+        <p id="distancia"></p>
+
+        <h3>Última visita registrada:</h3>
+        <p id="ultimaVisita">Nenhuma visita ainda.</p>
+    </div>
+
+</section>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script src="../js/mapa.js"></script>
+
+</body>
+</html>
